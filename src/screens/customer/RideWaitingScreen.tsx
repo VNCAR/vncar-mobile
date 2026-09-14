@@ -59,8 +59,8 @@ const RideWaitingScreen = ({ route, navigation }: any) => {
 
     newSocket.on('ride_accepted', (data) => {
       if (data.rideId === rideId) {
-        Alert.alert('Thành công', 'Chuyến đi đã được xác nhận!', [
-          { text: 'OK', onPress: () => navigation.replace('PassengerHomeScreen') } // Tạm thời quay về Home
+        Alert.alert('Thành công', 'Tài xế đang đến đón bạn!', [
+          { text: 'Theo dõi chuyến đi', onPress: () => navigation.replace('ActiveRideScreen', { rideId, driverId: data.driverId }) }
         ]);
       }
     });

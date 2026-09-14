@@ -89,6 +89,7 @@ const DriverHomeScreen = ({ navigation }: any) => {
     const user = auth().currentUser;
 
     if (socket && user) {
+      socket.emit('join_ride', rideId); // Join room to listen for acceptance
       socket.emit('place_bid', {
         rideId,
         driverId: user.uid,
@@ -97,6 +98,22 @@ const DriverHomeScreen = ({ navigation }: any) => {
       Alert.alert('Thành công', 'Đã gửi mức giá cho khách hàng!');
     }
   };
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('ride_accepted', (data) => {
+        const user = auth().currentUser;
+        if (user && data.driverId === user.uid) {
+          Alert.alert('Chúc mừng!', 'Khách hàng đã chấp nhận mức giá của bạn!', [
+            { text: 'Đi đón khách', onPress: () => navigation.replace('ActiveRideScreen', { rideId: data.rideId, driverId: user.uid }) }
+          ]);
+        } else if (data.driverId !== user?.uid) {
+          // Khách hàng chọn tài xế khác -> Xóa chuyến đi khỏi danh sách hoặc báo "Đã có tài xế nhận"
+          setRides((prev) => prev.filter(r => r.id !== data.rideId));
+        }
+      });
+    }
+  }, [socket]);
 
   const renderRideItem = ({ item }: { item: Ride }) => (
     <View style={styles.rideCard}>

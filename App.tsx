@@ -16,6 +16,8 @@ import CustomerAccountScreen from './src/screens/customer/CustomerAccountScreen'
 import KYCScreen from './src/screens/auth/KYCScreen';
 import DriverHomeScreen from './src/screens/driver/DriverHomeScreen';
 import RideWaitingScreen from './src/screens/customer/RideWaitingScreen';
+import ActiveRideScreen from './src/screens/shared/ActiveRideScreen';
+import RatingScreen from './src/screens/shared/RatingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,7 +71,11 @@ const App = () => {
             // Driver Stack
             <>
               {kycStatus === 'verified' ? (
-                <Stack.Screen name="DriverHomeScreen" component={DriverHomeScreen} />
+                <>
+                  <Stack.Screen name="DriverHomeScreen" component={DriverHomeScreen} />
+                  <Stack.Screen name="ActiveRideScreen" component={ActiveRideScreen} />
+                  <Stack.Screen name="RatingScreen" component={RatingScreen} />
+                </>
               ) : (
                 <Stack.Screen name="KYCScreen" component={KYCScreen} />
               )}
@@ -79,6 +85,8 @@ const App = () => {
             <>
               <Stack.Screen name="PassengerHome" component={PassengerHomeScreen} />
               <Stack.Screen name="RideWaitingScreen" component={RideWaitingScreen} />
+              <Stack.Screen name="ActiveRideScreen" component={ActiveRideScreen} />
+              <Stack.Screen name="RatingScreen" component={RatingScreen} />
               <Stack.Screen name="LocationPermission" component={LocationPermissionScreen} />
               <Stack.Screen name="MyTrips" component={MyTripsScreen} />
               <Stack.Screen name="CustomerAccount" component={CustomerAccountScreen} />
@@ -91,3 +99,4 @@ const App = () => {
 };
 
 export default App;
+
