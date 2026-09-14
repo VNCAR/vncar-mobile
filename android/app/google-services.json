@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "193471841626",
+    "project_id": "vncar-141fa",
+    "storage_bucket": "vncar-141fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193471841626:android:b9d21a684ab5085d1f9f63",
+        "android_client_info": {
+          "package_name": "com.biddingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193471841626-9vo6188s25pv6rrjpbl4l446dllnr313.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2nQTHsy6LGf_yQe-dQCAdofq9_UnrIok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193471841626-9vo6188s25pv6rrjpbl4l446dllnr313.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
