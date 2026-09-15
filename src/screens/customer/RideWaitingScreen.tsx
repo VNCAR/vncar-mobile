@@ -13,7 +13,7 @@ import { theme } from '../../theme';
 import auth from '@react-native-firebase/auth';
 import { io, Socket } from 'socket.io-client';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://10.0.2.2:3000';
 
 interface Bid {
   id: string;
@@ -106,6 +106,11 @@ const RideWaitingScreen = ({ route, navigation }: any) => {
       <View style={styles.radarContainer}>
         <ActivityIndicator size="large" color="#2563EB" />
         <Text style={styles.radarText}>Đang chờ các tài xế trả giá</Text>
+        {route.params?.predictedDistance && route.params?.predictedDuration && (
+          <View style={styles.predictionBox}>
+            <Text style={styles.predictionText}>✨ AI Dự đoán: {route.params.predictedDistance} km • {route.params.predictedDuration} phút</Text>
+          </View>
+        )}
       </View>
 
       <View style={styles.listContainer}>
@@ -150,6 +155,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#64748B',
     marginTop: 12,
+  },
+  predictionBox: {
+    marginTop: 16,
+    backgroundColor: '#EFF6FF',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#BFDBFE',
+  },
+  predictionText: {
+    fontFamily: theme.typography.fontFamily,
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#1D4ED8',
   },
   listContainer: {
     flex: 1,

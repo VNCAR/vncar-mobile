@@ -8,7 +8,7 @@ import { theme } from '../../theme';
 import auth from '@react-native-firebase/auth';
 import { useAuthStore } from '../../store/useAuthStore';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://10.0.2.2:3000';
 
 const ActiveRideScreen = ({ route, navigation }: any) => {
   const { rideId, driverId } = route.params;

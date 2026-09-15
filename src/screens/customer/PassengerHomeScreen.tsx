@@ -146,20 +146,21 @@ const PassengerHomeScreen = ({ navigation }: any) => {
       // 1. Tạo chuyến đi
       const user = auth().currentUser;
       const token = user ? await user.getIdToken() : '';
-      const response = await fetch('http://localhost:3000/api/rides', {
+      const response = await fetch('http://10.0.2.2:3000/api/rides', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          originLat: 21.0285, // Dummy location (nên lấy từ Google Maps Places)
-          originLng: 105.8542,
+          originLat: data.originLat || 21.0285, // Fallback nếu Gemini không lấy được
+          originLng: data.originLng || 105.8542,
           originAddress: data.pickup,
-          destinationLat: 21.0, 
-          destinationLng: 105.8,
+          destinationLat: data.destLat || 21.0, 
+          destinationLng: data.destLng || 105.8,
           destinationAddress: data.dropoff,
           priceRangeMin: data.price,
+          priceRangeMax: data.price + 50000,
           carType: data.carType
         })
       });
@@ -167,7 +168,11 @@ const PassengerHomeScreen = ({ navigation }: any) => {
       const result = await response.json();
       if (response.ok && result.ride) {
         // 2. Điều hướng qua màn hình chờ
-        navigation.navigate('RideWaitingScreen', { rideId: result.ride.id });
+        navigation.navigate('RideWaitingScreen', { 
+          rideId: result.ride.id,
+          predictedDistance: data.distance_km,
+          predictedDuration: data.duration_mins
+        });
       } else {
         throw new Error(result.error);
       }

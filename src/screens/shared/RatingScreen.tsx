@@ -5,7 +5,7 @@ import auth from '@react-native-firebase/auth';
 import { theme } from '../../theme';
 import { useAuthStore } from '../../store/useAuthStore';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://10.0.2.2:3000';
 
 const RatingScreen = ({ route, navigation }: any) => {
   const { rideId, targetUserId } = route.params;

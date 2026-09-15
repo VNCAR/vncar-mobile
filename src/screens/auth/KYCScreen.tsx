@@ -108,7 +108,7 @@ const KYCScreen = ({ navigation }: any) => {
 
       const token = await user.getIdToken();
       // NOTE: For physical devices, 'localhost' will work if you run: adb reverse tcp:3000 tcp:3000
-      const apiUrl = 'http://localhost:3000';
+      const apiUrl = 'http://10.0.2.2:3000';
 
       const response = await fetch(`${apiUrl}/api/user/kyc`, {
         method: 'POST',

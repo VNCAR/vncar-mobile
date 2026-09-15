@@ -14,7 +14,7 @@ import { theme } from '../../theme';
 import auth from '@react-native-firebase/auth';
 import { io, Socket } from 'socket.io-client';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://10.0.2.2:3000';
 
 interface Ride {
   id: string;

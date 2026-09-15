@@ -52,7 +52,7 @@ const AiBookingModal: React.FC<AiBookingModalProps> = ({ visible, onClose, onPar
       const user = auth().currentUser;
       const token = user ? await user.getIdToken() : '';
       
-      const apiUrl = 'http://localhost:3000';
+      const apiUrl = 'http://10.0.2.2:3000';
       const response = await fetch(`${apiUrl}/api/ai/parse-intent`, {
         method: 'POST',
         headers: {

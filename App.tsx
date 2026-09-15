@@ -33,7 +33,7 @@ const App = () => {
       if (firebaseUser) {
         try {
           const token = await firebaseUser.getIdToken();
-          const apiUrl = 'http://localhost:3000';
+          const apiUrl = 'http://10.0.2.2:3000';
           const currentRole = useAuthStore.getState().role;
           
           await fetch(`${apiUrl}/api/auth/sync`, {
